@@ -1,18 +1,19 @@
+version: '3.8'
+
 services:
   mysql:
     container_name: mysql
-    build:
-      context: ./mysql
-      args:
-        - MYSQL_DATABASE=${MYSQL_DATABASE}
-        - MYSQL_USER=${MYSQL_USER}
-        - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    image: mysql:8.0.30  # Use the official MySQL image, no need for a custom Dockerfile unless required
     ports:
       - "${MYSQL_PORT}:3306"
     volumes:
       - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
       - ./mysql/mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     networks:
       - spring-microservice
 
@@ -20,7 +21,7 @@ services:
     container_name: department-service
     build:
       context: ./department-service
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile  # Make sure Dockerfile is inside the ./department-service directory
     ports:
       - "8080:8080"
     depends_on:
@@ -34,9 +35,10 @@ services:
       SPRING_APPLICATION_NAME: department-service
 
   account-service:
+    container_name: account-service
     build:
       context: ./account-service
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile  # Ensure Dockerfile is in ./account-service directory
     restart: unless-stopped
     ports:
       - "8081:8081"
@@ -52,7 +54,7 @@ services:
     container_name: auth-service
     build:
       context: ./auth-service
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile  # Ensure Dockerfile is in ./auth-service directory
     ports:
       - "8082:8082"
     depends_on:
@@ -64,15 +66,17 @@ services:
       SPRING_DATASOURCE_USERNAME: npv0710
       SPRING_DATASOURCE_PASSWORD: 123abc
       SPRING_APPLICATION_NAME: auth-service
+
   eureka-server:
     container_name: eureka-server
     build:
-      - context: ./eureka-server
-      - dockerfile: Dockerfile
+      context: ./eureka-server
+      dockerfile: Dockerfile  # Ensure Dockerfile is in ./eureka-server directory
     ports:
       - "8761:8761"
     networks:
       - spring-microservice
+
 networks:
   spring-microservice:
     driver: bridge
