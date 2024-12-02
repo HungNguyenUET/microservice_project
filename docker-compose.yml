@@ -1,0 +1,70 @@
+services:
+  mysql:
+    container_name: mysql
+    build:
+      context: ./mysql
+      args:
+        - MYSQL_DATABASE=${MYSQL_DATABASE}
+        - MYSQL_USER=${MYSQL_USER}
+        - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "${MYSQL_PORT}:3306"
+    volumes:
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./mysql/mysql-data:/var/lib/mysql
+    networks:
+      - spring-microservice
+
+  department-service:
+    container_name: department-service
+    build:
+      context: ./department-service
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    networks:
+      - spring-microservice
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/microservice?createDatabaseIfNotExist=true&characterEncoding=UTF-8&serverTimeZone=UTC
+      SPRING_DATASOURCE_USERNAME: npv0710
+      SPRING_DATASOURCE_PASSWORD: 123abc
+      SPRING_APPLICATION_NAME: department-service
+
+  account-service:
+    build:
+      context: ./account-service
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/microservice?createDatabaseIfNotExist=true&characterEncoding=UTF-8&serverTimeZone=UTC
+      SPRING_DATASOURCE_USERNAME: npv0710
+      SPRING_DATASOURCE_PASSWORD: 123abc
+      SPRING_APPLICATION_NAME: account-service
+    networks:
+      - spring-microservice
+
+  auth-service:
+    container_name: auth-service
+    build:
+      context: ./auth-service
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+    depends_on:
+      - mysql
+    networks:
+      - spring-microservice
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/microservice?createDatabaseIfNotExist=true&characterEncoding=UTF-8&serverTimeZone=UTC
+      SPRING_DATASOURCE_USERNAME: npv0710
+      SPRING_DATASOURCE_PASSWORD: 123abc
+      SPRING_APPLICATION_NAME: auth-service
+
+networks:
+  spring-microservice:
+    driver: bridge
