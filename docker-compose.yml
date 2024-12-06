@@ -81,6 +81,20 @@ services:
       SPRING_DATASOURCE_PASSWORD: 123abc
       SPRING_APPLICATION_NAME: auth-service
 
+  api-gateway:
+    container_name: api-gateway
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    image: api-gateway
+    restart: unless-stopped
+    ports:
+      - '8762:8762'
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://localhost:8761/euraka/
+    networks:
+      - spring-microservice
+
 networks:
   spring-microservice:
     driver: bridge
