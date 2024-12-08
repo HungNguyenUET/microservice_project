@@ -5,6 +5,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,10 +18,10 @@ import java.util.HexFormat;
 
 @Slf4j
 @Component
+@RequiredArgsConstructor
 public class JwtUtil {
-    private static final Logger log = LoggerFactory.getLogger(JwtUtil.class);
 
-    @Value("$jwt.sercet")
+    @Value("${jwt.sercet}")
     private String secret;
 
     private Key key;

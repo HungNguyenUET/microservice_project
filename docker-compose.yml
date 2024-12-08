@@ -86,32 +86,30 @@ services:
     build:
       context: ./api-gateway
       dockerfile: Dockerfile
-    image: api-gateway
     restart: unless-stopped
     ports:
       - "8762:8762"
     depends_on:
       - eureka-server
-    environment:
-      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://localhost:8761/euraka/
     networks:
       - spring-microservice
+    environment:
+      EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://eureka-server:8761/eureka/
 
   config-service:
     container_name: config-service
     build:
       context: ./config-service
       dockerfile: Dockerfile
-    image: config-service
     restart: unless-stopped
     ports:
       - "8763:8763"
     depends_on:
       - eureka-server
-    environment:
-      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://localhost:8761/euraka/
     networks:
       - spring-microservice
+    environment:
+      EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://eureka-server:8761/eureka/
 
 networks:
   spring-microservice:
