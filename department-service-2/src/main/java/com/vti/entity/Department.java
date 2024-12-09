@@ -1,10 +1,8 @@
-package hungnv.account_service.entity;
+package com.vti.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
@@ -14,7 +12,6 @@ import java.util.List;
 @Table(name = "department")
 @NoArgsConstructor
 @Getter
-@Setter
 public class Department {
     @Column(name = "id")
     @Id
@@ -35,14 +32,14 @@ public class Department {
     @CreationTimestamp
     private Date createdAt;
 
-    @OneToMany(mappedBy = "department",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "department")
     private List<Account> accounts;
 
     public enum DepartmentType {
         DEV, TEST, SCRUM_MASTER, PM;
 
         public static DepartmentType toEnum(String type) {
-            for (DepartmentType item: values()) {
+            for (DepartmentType item : values()) {
                 if (item.toString().equals(type)) return item;
             }
             return null;

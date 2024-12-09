@@ -1,9 +1,10 @@
-package hungnv.account_service.entity;
+package com.vti.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import hungnv.account_service.model.Role;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Builder
@@ -11,7 +12,6 @@ import lombok.*;
 @NoArgsConstructor
 @Table(name = "`account`")
 @Getter
-@Setter
 public class Account {
     @Column(name = "id")
     @Id
