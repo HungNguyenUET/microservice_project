@@ -32,6 +32,8 @@ services:
     build:
       context: ./department-service
       dockerfile: Dockerfile
+    restart: unless-stopped
+    image: department-service
     ports:
       - "8080:8080"
     depends_on:
@@ -80,6 +82,7 @@ services:
       SPRING_DATASOURCE_USERNAME: npv0710
       SPRING_DATASOURCE_PASSWORD: 123abc
       SPRING_APPLICATION_NAME: auth-service
+      EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://eureka-server:8761/eureka/
 
   api-gateway:
     container_name: api-gateway

@@ -2,7 +2,7 @@ package com.vti.controller;
 
 import java.util.List;
 
-import com.vti.service.DepartmentService;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +17,10 @@ import com.vti.form.DepartmentFilterForm;
 import com.vti.service.IDepartmentService;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping(value = "/api/v1/departments")
 public class DepartmentController {
-
-	@Autowired
-	private IDepartmentService service;
-
-	@Autowired
+	private IDepartmentService dpService;
 	private ModelMapper modelMapper;
 
 	
@@ -32,7 +29,7 @@ public class DepartmentController {
 			Pageable pageable, 
 			@RequestParam(name = "search", required = false) String search,
 			DepartmentFilterForm filterForm) {
-		Page<Department> entityPages = service.getAllDepartments(pageable, search, filterForm);
+		Page<Department> entityPages = dpService.getAllDepartments(pageable, search, filterForm);
 
 		// convert entities --> dtos
 		List<DepartmentDTO> dtos = modelMapper.map(
@@ -46,12 +43,24 @@ public class DepartmentController {
 	}
 
 	@GetMapping(value = "/{id}")
-	public DepartmentDTO getDepartmentByID(@PathVariable(name = "id") int id) {
-		Department entity = service.getDepartmentByID(id);
+	public DepartmentDTO getDepartmentById(@PathVariable(name = "id") int id) {
+		Department department = dpService.getDepartmentById(id);
 
 		// convert entity to dto
-		DepartmentDTO dto = modelMapper.map(entity, DepartmentDTO.class);
+		DepartmentDTO dpDTO = modelMapper.map(department, DepartmentDTO.class);
 
-		return dto;
+		return dpDTO;
+	}
+
+	@GetMapping
+	public List<DepartmentDTO> getListAccounts() {
+		List<Department> departments = dpService.getListDepartment();
+
+		List<DepartmentDTO> listDpDTO = modelMapper.map(
+				departments,
+				new TypeToken<List<DepartmentDTO>>() {}.getType()
+		);
+
+		return listDpDTO;
 	}
 }
