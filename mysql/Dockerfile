@@ -16,4 +16,4 @@ ENV MYSQL_PORT=$MYSQL_PORT
 # These scripts will run when the container starts
 COPY ./init.sql /docker-entrypoint-initdb.d/
 
-EXPOSE 3306
+EXPOSE 3307
