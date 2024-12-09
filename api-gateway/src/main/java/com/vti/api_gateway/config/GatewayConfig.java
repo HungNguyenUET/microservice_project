@@ -1,4 +1,5 @@
 package com.vti.api_gateway.config;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
@@ -10,6 +11,7 @@ public class GatewayConfig {
     @Autowired
     AuthenticationFilter filter;
 
+    @Bean
     public RouteLocator routes(RouteLocatorBuilder builder) {
         return builder.routes()
                 .route("account-service", r -> r.path("/api/v1/accounts/**")

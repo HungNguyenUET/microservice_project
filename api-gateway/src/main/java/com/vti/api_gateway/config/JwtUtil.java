@@ -5,21 +5,23 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
-
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
 import java.util.Date;
 import java.util.HexFormat;
-import java.util.logging.Logger;
 
 @Slf4j
 @Component
+@RequiredArgsConstructor
 public class JwtUtil {
 
-    @Value("$jwt.sercet")
+    @Value("${jwt.sercet}")
     private String secret;
 
     private Key key;

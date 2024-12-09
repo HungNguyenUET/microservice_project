@@ -17,7 +17,6 @@ import reactor.core.publisher.Mono;
 public class AuthenticationFilter implements GatewayFilter {
     private final JwtUtil jwtUtil;
 
-
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
@@ -31,11 +30,14 @@ public class AuthenticationFilter implements GatewayFilter {
         }
 
         String token = authHeader.substring(7);
-        jwtUtil.verifyToken(token);
-        this.populateRequestWithHeader(exchange, token);
+        if (!jwtUtil.verifyToken(token)) {
+            throw new CustomException(HttpStatus.UNAUTHORIZED, "Authorization header method is incorrect");
+        }
 
+        this.populateRequestWithHeader(exchange, token);
         return chain.filter(exchange);
     }
+
     private Mono<Void> onError(ServerWebExchange exchange, String err, HttpStatus httpStatus) {
         ServerHttpResponse response = exchange.getResponse();
         response.setStatusCode(httpStatus);

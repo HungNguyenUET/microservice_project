@@ -1,7 +1,9 @@
 package com.vti.api_gateway.exception;
 
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
+@Getter
 public class CustomException extends RuntimeException {
     private HttpStatus status;
     private String message;
@@ -10,13 +12,5 @@ public class CustomException extends RuntimeException {
         super(message);
         this.status = status;
         this.message = message;
-    }
-
-    public HttpStatus getStatus() {
-        return status;
-    }
-
-    public String getMessage() {
-        return message;
     }
 }
