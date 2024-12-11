@@ -5,6 +5,7 @@ import hungnv.account_service.entity.Account;
 import hungnv.account_service.feignclient.DepartmentFeignClient;
 import hungnv.account_service.service.IAccountService;
 import hungnv.account_service.utils.JsonUtils;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -39,15 +40,20 @@ public class AccountController {
 //        return listAccountDTO;
 //    }
 
+    @CircuitBreaker(name = "departmentService", fallbackMethod = "fallbackNotCallDepartmentService")
     @GetMapping("/{id}")
     public Account getAccount(@PathVariable final int id) {
         Account ac = acService.findAccountById(id);
         int dpId = ac.getDepartment().getId();
+
+        DepartmentDTO department = restTemplate.getForObject("http://department-service-1:8080/api/v1/departments/" + dpId, DepartmentDTO.class);
+        log.info("Department: {}", department);
+
         return ac;
     }
 
     @GetMapping("/department/{id}")
-    public DepartmentDTO getDepartment(@PathVariable final  int id) {
+    public DepartmentDTO getDepartment(@PathVariable final int id) {
         log.info("AccountController|getDepartment|/department/{id}|START|id|{}", id);
 //        DepartmentDTO department = restTemplate.getForObject("http://department-service:8083/api/v1/departments/" + dpId, DepartmentDTO.class);
 //        log.info("Department: {}", department);
@@ -59,5 +65,9 @@ public class AccountController {
 
         DepartmentDTO departmentDTO = dpResponseEntity.getBody();
         return departmentDTO;
+    }
+
+    public String fallbackNotCallDepartmentService(int id, Throwable throwable) {
+        return "Department Servers Down";
     }
 }
