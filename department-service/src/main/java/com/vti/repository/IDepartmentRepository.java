@@ -17,7 +17,7 @@ import java.util.List;
 public interface IDepartmentRepository extends JpaRepository<Department, Integer> {
     @Query (
             nativeQuery = true,
-            value = "SELECT dp FROM department dp WHERE dp.id := id"
+            value = "SELECT * FROM department dp WHERE dp.id = :id"
     )
     List<Department> getDepartmentsByAccountId(@Param("id") int id);
 

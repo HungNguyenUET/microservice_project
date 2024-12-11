@@ -20,26 +20,26 @@ import com.vti.service.IDepartmentService;
 @RequiredArgsConstructor
 @RequestMapping(value = "/api/v1/departments")
 public class DepartmentController {
-	private IDepartmentService dpService;
-	private ModelMapper modelMapper;
+	private final IDepartmentService dpService;
+	private final ModelMapper modelMapper;
 
 	
 	@GetMapping()
 	public Page<DepartmentDTO> getAllDepartments(
-			Pageable pageable, 
+			Pageable pageable,
 			@RequestParam(name = "search", required = false) String search,
 			DepartmentFilterForm filterForm) {
 		Page<Department> entityPages = dpService.getAllDepartments(pageable, search, filterForm);
 
 		// convert entities --> dtos
 		List<DepartmentDTO> dtos = modelMapper.map(
-				entityPages.getContent(), 
+				entityPages.getContent(),
 				new TypeToken<List<DepartmentDTO>>() {}.getType());
 
 		Page<DepartmentDTO> dtoPages = new PageImpl<>(dtos, pageable, entityPages.getTotalElements());
 
 		return dtoPages;
-		
+
 	}
 
 	@GetMapping(value = "/{id}")
@@ -52,15 +52,15 @@ public class DepartmentController {
 		return dpDTO;
 	}
 
-	@GetMapping
-	public List<DepartmentDTO> getListAccounts() {
-		List<Department> departments = dpService.getListDepartment();
-
-		List<DepartmentDTO> listDpDTO = modelMapper.map(
-				departments,
-				new TypeToken<List<DepartmentDTO>>() {}.getType()
-		);
-
-		return listDpDTO;
-	}
+//	@GetMapping
+//	public List<DepartmentDTO> getListAccounts() {
+//		List<Department> departments = dpService.getListDepartment();
+//
+//		List<DepartmentDTO> listDpDTO = modelMapper.map(
+//				departments,
+//				new TypeToken<List<DepartmentDTO>>() {}.getType()
+//		);
+//
+//		return listDpDTO;
+//	}
 }

@@ -11,7 +11,7 @@ WORKDIR /app
 COPY target/account-service-0.0.1-SNAPSHOT.jar /app/account-service-0.0.1-SNAPSHOT.jar
 
 # Expose port của ứng dụng
-EXPOSE 8081
+EXPOSE 8083
 
 # Câu lệnh để chạy ứng dụng
 ENTRYPOINT ["java", "-jar", "/app/account-service-0.0.1-SNAPSHOT.jar"]

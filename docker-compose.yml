@@ -1,4 +1,25 @@
 services:
+  prometheus:
+    image: prom/prometheus:v2.44.0
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - spring-microservice
+
+  grafana:
+    image: grafana/grafana:9.5.2
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    volumes:
+      - ./monitoring/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+    networks:
+      - spring-microservice
+
   mysql:
     container_name: mysql
     build:
@@ -28,7 +49,6 @@ services:
       - spring-microservice
 
   department-service:
-    container_name: department-service
     build:
       context: ./department-service
       dockerfile: Dockerfile
@@ -46,6 +66,27 @@ services:
       SPRING_DATASOURCE_USERNAME: npv0710
       SPRING_DATASOURCE_PASSWORD: 123abc
       SPRING_APPLICATION_NAME: department-service
+      INSTANCE_NAME: department-service
+
+  department-service-2:
+    build:
+      context: ./department-service
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    image: department-service
+    ports:
+      - "8081:8080"
+    depends_on:
+      - mysql
+      - eureka-server
+    networks:
+      - spring-microservice
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/microservice?createDatabaseIfNotExist=true&characterEncoding=UTF-8&serverTimeZone=UTC
+      SPRING_DATASOURCE_USERNAME: npv0710
+      SPRING_DATASOURCE_PASSWORD: 123abc
+      SPRING_APPLICATION_NAME: department-service
+      INSTANCE_NAME: department-service-2
 
   account-service:
     build:
@@ -53,7 +94,7 @@ services:
       dockerfile: Dockerfile
     restart: unless-stopped
     ports:
-      - "8081:8081"
+      - "8083:8083"
     depends_on:
       - mysql
       - eureka-server
