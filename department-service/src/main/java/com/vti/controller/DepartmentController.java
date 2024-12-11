@@ -1,29 +1,29 @@
 package com.vti.controller;
 
-import java.util.List;
-
+import com.vti.dto.DepartmentDTO;
+import com.vti.entity.Department;
+import com.vti.form.DepartmentFilterForm;
+import com.vti.service.IDepartmentService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
-import com.vti.dto.DepartmentDTO;
-import com.vti.entity.Department;
-import com.vti.form.DepartmentFilterForm;
-import com.vti.service.IDepartmentService;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/api/v1/departments")
 public class DepartmentController {
+	private static final Logger log = LoggerFactory.getLogger(DepartmentController.class);
 	private final IDepartmentService dpService;
 	private final ModelMapper modelMapper;
 
-	
 	@GetMapping()
 	public Page<DepartmentDTO> getAllDepartments(
 			Pageable pageable,
@@ -44,11 +44,12 @@ public class DepartmentController {
 
 	@GetMapping(value = "/{id}")
 	public DepartmentDTO getDepartmentById(@PathVariable(name = "id") int id) {
+		log.info("DepartmentController|getDepartmentById|START|id|{}", id);
 		Department department = dpService.getDepartmentById(id);
 
 		// convert entity to dto
 		DepartmentDTO dpDTO = modelMapper.map(department, DepartmentDTO.class);
-
+		log.info("DepartmentController|getDepartmentById|START|id|{}|dpDTP|{}", id, dpDTO);
 		return dpDTO;
 	}
 

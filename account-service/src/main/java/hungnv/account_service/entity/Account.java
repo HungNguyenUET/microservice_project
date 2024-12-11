@@ -1,6 +1,5 @@
 package hungnv.account_service.entity;
 
-import hungnv.account_service.model.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

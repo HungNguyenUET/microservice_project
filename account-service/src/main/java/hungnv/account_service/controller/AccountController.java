@@ -43,14 +43,21 @@ public class AccountController {
     public Account getAccount(@PathVariable final int id) {
         Account ac = acService.findAccountById(id);
         int dpId = ac.getDepartment().getId();
+        return ac;
+    }
 
+    @GetMapping("/department/{id}")
+    public DepartmentDTO getDepartment(@PathVariable final  int id) {
+        log.info("AccountController|getDepartment|/department/{id}|START|id|{}", id);
 //        DepartmentDTO department = restTemplate.getForObject("http://department-service:8083/api/v1/departments/" + dpId, DepartmentDTO.class);
 //        log.info("Department: {}", department);
 
-        ResponseEntity<DepartmentDTO> dpResponseEntity = dpFeignClient.getDepartmentById(dpId);
-        log.info("Response from feign client");
-        log.info("Response body: {}", JsonUtils.toJson(dpResponseEntity));
+        ResponseEntity<DepartmentDTO> dpResponseEntity = dpFeignClient.getDepartmentById(id);
 
-        return null;
+        log.info("AccountController|getDepartment|Response from feign client");
+        log.info("AccountController|getDepartment|Response body: {}", JsonUtils.toJson(dpResponseEntity));
+
+        DepartmentDTO departmentDTO = dpResponseEntity.getBody();
+        return departmentDTO;
     }
 }
