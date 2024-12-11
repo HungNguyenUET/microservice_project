@@ -42,14 +42,14 @@ public class AccountController {
 
     @CircuitBreaker(name = "departmentService", fallbackMethod = "fallbackNotCallDepartmentService")
     @GetMapping("/{id}")
-    public Account getAccount(@PathVariable final int id) {
+    public String getAccount(@PathVariable final int id) {
         Account ac = acService.findAccountById(id);
         int dpId = ac.getDepartment().getId();
 
         DepartmentDTO department = restTemplate.getForObject("http://department-service-1:8080/api/v1/departments/" + dpId, DepartmentDTO.class);
         log.info("Department: {}", department);
 
-        return ac;
+        return ac.toString();
     }
 
     @GetMapping("/department/{id}")
