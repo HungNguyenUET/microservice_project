@@ -1,66 +1,67 @@
 package com.vti.controller;
 
-import java.util.List;
-
-import com.vti.service.DepartmentService;
+import com.vti.dto.DepartmentDTO;
+import com.vti.entity.Department;
+import com.vti.form.DepartmentFilterForm;
+import com.vti.service.IDepartmentService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
-import com.vti.dto.DepartmentDTO;
-import com.vti.entity.Department;
-import com.vti.form.DepartmentFilterForm;
-import com.vti.service.IDepartmentService;
+import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/v1/departments")
 @RequiredArgsConstructor
+@RequestMapping(value = "/api/v1/departments")
 public class DepartmentController {
+	private static final Logger log = LoggerFactory.getLogger(DepartmentController.class);
+	private final IDepartmentService dpService;
+	private final ModelMapper modelMapper;
 
-	@Autowired
-	private IDepartmentService service;
+	@GetMapping()
+	public Page<DepartmentDTO> getAllDepartments(
+			Pageable pageable,
+			@RequestParam(name = "search", required = false) String search,
+			DepartmentFilterForm filterForm) {
+		Page<Department> entityPages = dpService.getAllDepartments(pageable, search, filterForm);
 
-	@Autowired
-	private ModelMapper modelMapper;
+		// convert entities --> dtos
+		List<DepartmentDTO> dtos = modelMapper.map(
+				entityPages.getContent(),
+				new TypeToken<List<DepartmentDTO>>() {}.getType());
 
-	
-//	@GetMapping()
-//	public Page<DepartmentDTO> getAllDepartments(
-//			Pageable pageable,
-//			@RequestParam(name = "search", required = false) String search,
-//			DepartmentFilterForm filterForm) {
-//		Page<Department> entityPages = service.getAllDepartments(pageable, search, filterForm);
-//
-//		// convert entities --> dtos
-//		List<DepartmentDTO> dtos = modelMapper.map(
-//				entityPages.getContent(),
-//				new TypeToken<List<DepartmentDTO>>() {}.getType());
-//
-//		Page<DepartmentDTO> dtoPages = new PageImpl<>(dtos, pageable, entityPages.getTotalElements());
-//
-//		return dtoPages;
-//
-//	}
+		Page<DepartmentDTO> dtoPages = new PageImpl<>(dtos, pageable, entityPages.getTotalElements());
+
+		return dtoPages;
+
+	}
 
 	@GetMapping(value = "/{id}")
-	public DepartmentDTO getDepartmentByID(@PathVariable(name = "id") int id) {
-		Department department = service.getDepartmentById(id);
+	public DepartmentDTO getDepartmentById(@PathVariable(name = "id") int id) {
+		log.info("DepartmentController|getDepartmentById|START|id|{}", id);
+		Department department = dpService.getDepartmentById(id);
 
 		// convert entity to dto
-		DepartmentDTO dto = modelMapper.map(department, DepartmentDTO.class);
-
-		return dto;
+		DepartmentDTO dpDTO = modelMapper.map(department, DepartmentDTO.class);
+		log.info("DepartmentController|getDepartmentById|START|id|{}|dpDTP|{}", id, dpDTO);
+		return dpDTO;
 	}
 
-	@GetMapping
-	public List<DepartmentDTO> getListAccounts(){
-		List<Department> departments = service.getListDepartment();
-		List<DepartmentDTO> departmentDTOS = modelMapper.map(departments,new TypeToken<List<DepartmentDTO>>(){}.getType());
-		return departmentDTOS;
-	}
+//	@GetMapping
+//	public List<DepartmentDTO> getListAccounts() {
+//		List<Department> departments = dpService.getListDepartment();
+//
+//		List<DepartmentDTO> listDpDTO = modelMapper.map(
+//				departments,
+//				new TypeToken<List<DepartmentDTO>>() {}.getType()
+//		);
+//
+//		return listDpDTO;
+//	}
 }

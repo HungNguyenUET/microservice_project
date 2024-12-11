@@ -7,7 +7,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
-//import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
@@ -19,10 +18,11 @@ public class AccountServiceApplication {
 	}
 
 	@Configuration
-	class RestTemplateConfig{
+	class RestTemplateConfig {
 		@Bean
-		public RestTemplate restTemplate(){
+		public RestTemplate restTemplate() {
 			return new RestTemplate();
 		}
 	}
+
 }
