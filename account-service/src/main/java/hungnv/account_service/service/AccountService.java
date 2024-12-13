@@ -16,4 +16,9 @@ public class AccountService implements IAccountService {
     public List<Account> getListAccounts() {
         return acRepository.findAll();
     }
+
+    @Override
+    public Account findAccountById(int id) {
+        return acRepository.findById(id).get();
+    }
 }
