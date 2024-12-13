@@ -1,5 +1,6 @@
-package com.vti.auth_service.oauth2;
+package com.vti.auth_service.handler;
 
+import com.vti.auth_service.oauth2.UserPrincipal;
 import com.vti.auth_service.oauth2.repository.HttpCookieOAuthorizationRequestRepository;
 import com.vti.auth_service.user.services.JwtService;
 import com.vti.auth_service.util.CookieUtils;

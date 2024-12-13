@@ -2,7 +2,7 @@ package com.vti.auth_service.config;
 
 import com.vti.auth_service.handler.OAuth2AuthenticationFailureHandler;
 import com.vti.auth_service.model.Role;
-import com.vti.auth_service.oauth2.OAuth2AuthenticationSuccessHandler;
+import com.vti.auth_service.handler.OAuth2AuthenticationSuccessHandler;
 import com.vti.auth_service.oauth2.repository.HttpCookieOAuthorizationRequestRepository;
 import com.vti.auth_service.oauth2.service.CustomOAuth2UserService;
 import org.springframework.beans.factory.annotation.Autowired;
