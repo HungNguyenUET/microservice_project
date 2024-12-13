@@ -1,5 +1,6 @@
 package com.vti.auth_service.oauth2.repository;
 
+import com.vti.auth_service.util.CookieUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.commons.lang.StringUtils;

@@ -6,6 +6,7 @@ import com.vti.auth_service.oauth2.entity.AuthProvider;
 import com.vti.auth_service.oauth2.user.OAuth2UserInfo;
 import com.vti.auth_service.oauth2.user.OAuth2UserInfoFactory;
 import com.vti.auth_service.user.repo.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 import javax.naming.AuthenticationException;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
     @Autowired
@@ -27,8 +29,6 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         OAuth2User oAuth2User = super.loadUser(userRequest);
         try {
             return processOAuth2User(userRequest, oAuth2User);
-        } catch (AuthenticationException ex) {
-            throw ex;
         } catch (Exception ex) {
             throw new InternalAuthenticationServiceException(ex.getMessage(), ex.getCause());
         }
