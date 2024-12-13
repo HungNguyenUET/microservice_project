@@ -25,15 +25,13 @@ public class SecurityConfiguration {
     private CustomOAuth2UserService customOAuth2UserService;
 
     @Autowired
+    private HttpCookieOAuthorizationRequestRepository httpCookieOAuthorizationRequestRepository;
+
+    @Autowired
     private OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
 
     @Autowired
     private OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler;
-
-    @Bean
-    public HttpCookieOAuthorizationRequestRepository cookieOAuthorizationRequestRepository() {
-        return new HttpCookieOAuthorizationRequestRepository();
-    }
 
     @SuppressWarnings("removal")
     @Bean
@@ -53,7 +51,7 @@ public class SecurityConfiguration {
                 .oauth2Login()
                 .authorizationEndpoint()
                     .baseUri("/oauth2/authorise")
-                    .authorizationRequestRepository(cookieOAuthorizationRequestRepository())
+                    .authorizationRequestRepository(httpCookieOAuthorizationRequestRepository)
                 .and()
                 .redirectionEndpoint()
                 .and()
