@@ -1,6 +1,6 @@
 package com.vti.auth_service.config;
 
-import com.vti.auth_service.OAuth2AuthenticationFailureHandler;
+import com.vti.auth_service.handler.OAuth2AuthenticationFailureHandler;
 import com.vti.auth_service.model.Role;
 import com.vti.auth_service.oauth2.OAuth2AuthenticationSuccessHandler;
 import com.vti.auth_service.oauth2.repository.HttpCookieOAuthorizationRequestRepository;

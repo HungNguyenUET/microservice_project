@@ -1,4 +1,4 @@
-package com.vti.auth_service;
+package com.vti.auth_service.handler;
 
 import com.vti.auth_service.exception.CustomException;
 import jakarta.servlet.ServletException;

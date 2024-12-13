@@ -2,6 +2,7 @@ package com.vti.auth_service.oauth2;
 
 import com.vti.auth_service.oauth2.repository.HttpCookieOAuthorizationRequestRepository;
 import com.vti.auth_service.user.services.JwtService;
+import com.vti.auth_service.util.CookieUtils;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
