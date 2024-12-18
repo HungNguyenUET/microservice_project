@@ -21,4 +21,9 @@ public class AccountService implements IAccountService {
     public Account findAccountById(int id) {
         return acRepository.findById(id).get();
     }
+
+    @Override
+    public Account createAccount(Account account) {
+        return acRepository.save(account);
+    }
 }

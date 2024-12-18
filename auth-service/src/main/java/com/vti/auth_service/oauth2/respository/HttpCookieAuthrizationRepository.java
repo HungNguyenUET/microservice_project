@@ -7,10 +7,8 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.security.oauth2.client.web.AuthorizationRequestRepository;
 import org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 @Component
-@Repository
 // Lớp này triển khai AuthorizationRequestRepository để quản lý OAuth2AuthorizationRequest thông qua cookie
 public class HttpCookieAuthrizationRepository implements AuthorizationRequestRepository<OAuth2AuthorizationRequest> {
 

@@ -10,4 +10,5 @@ public interface IAccountService {
 
     Account findAccountById(int id);
 
+    Account createAccount(Account account);
 }
