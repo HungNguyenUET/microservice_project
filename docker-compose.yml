@@ -61,12 +61,15 @@ services:
       - eureka-server
     networks:
       - spring-microservice
+    volumes:
+      - ./logs:/app/logs
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/microservice?createDatabaseIfNotExist=true&characterEncoding=UTF-8&serverTimeZone=UTC
       SPRING_DATASOURCE_USERNAME: npv0710
       SPRING_DATASOURCE_PASSWORD: 123abc
       SPRING_APPLICATION_NAME: department-service
       INSTANCE_NAME: department-service
+      LOG_DIR: /app/logs
 
   department-service-2:
     build:
@@ -87,6 +90,9 @@ services:
       SPRING_DATASOURCE_PASSWORD: 123abc
       SPRING_APPLICATION_NAME: department-service
       INSTANCE_NAME: department-service
+      LOG_DIR: /app/logs
+    volumes:
+      - ./logs:/app/logs
 
   account-service:
     build:
@@ -103,8 +109,11 @@ services:
       SPRING_DATASOURCE_USERNAME: npv0710
       SPRING_DATASOURCE_PASSWORD: 123abc
       SPRING_APPLICATION_NAME: account-service
+      LOG_DIR: /app/logs
     networks:
       - spring-microservice
+    volumes:
+      - ./logs:/app/logs
 
   auth-service:
     container_name: auth-service
@@ -154,6 +163,53 @@ services:
       - spring-microservice
     environment:
       EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://eureka-server:8761/eureka/
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.4.3
+    container_name: elasticsearch
+    restart: always
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - xpack.security.enabled=false  # Disable security for development
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ./elk-stack/elastic-data:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+    networks:
+      - spring-microservice
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.10.0
+    container_name: logstash
+    depends_on:
+      - elasticsearch
+    ports:
+      - "5044:5044"
+      - "9600:9600"
+    volumes:
+      - ./logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro
+      - ./logs:/app/logs
+    networks:
+      - spring-microservice
+
+  kibana:
+    container_name: kibana
+    image: docker.elastic.co/kibana/kibana:8.4.3
+    restart: always
+    environment:
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    networks:
+      - spring-microservice
 
 networks:
   spring-microservice:
