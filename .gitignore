@@ -34,3 +34,5 @@ build/
 
 ### temp file ###
 mysql/mysql-data
+
+elk-stack
