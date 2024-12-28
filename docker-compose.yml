@@ -62,14 +62,14 @@ services:
     networks:
       - spring-microservice
     volumes:
-      - ./logs:/app/logs
+      - ./logs:/var/log
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/microservice?createDatabaseIfNotExist=true&characterEncoding=UTF-8&serverTimeZone=UTC
       SPRING_DATASOURCE_USERNAME: npv0710
       SPRING_DATASOURCE_PASSWORD: 123abc
       SPRING_APPLICATION_NAME: department-service
       INSTANCE_NAME: department-service
-      LOG_DIR: /app/logs
+      LOG_DIR: /var/log
 
   department-service-2:
     build:
