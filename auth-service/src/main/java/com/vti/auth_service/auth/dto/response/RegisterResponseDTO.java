@@ -1,4 +1,4 @@
-package com.vti.auth_service.auth.dto;
+package com.vti.auth_service.auth.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

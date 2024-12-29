@@ -9,12 +9,12 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "department")
-@NoArgsConstructor
 @Getter
+@NoArgsConstructor
+@Table(name = "department")
 public class Department {
-    @Column(name = "id")
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 

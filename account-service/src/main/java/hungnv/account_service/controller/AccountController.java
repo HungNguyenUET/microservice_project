@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "api/v1/accounts")
 @RequiredArgsConstructor
+@RequestMapping(value = "api/v1/accounts")
 public class AccountController {
     private final IAccountService acService;
     private final ModelMapper modelMapper;

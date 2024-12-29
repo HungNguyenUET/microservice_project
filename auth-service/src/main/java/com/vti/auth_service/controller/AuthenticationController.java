@@ -1,9 +1,9 @@
 package com.vti.auth_service.controller;
 
-import com.vti.auth_service.auth.dto.AuthenticationResponseDTO;
-import com.vti.auth_service.auth.dto.LoginRequestDTO;
-import com.vti.auth_service.auth.dto.RegisterRequestDTO;
-import com.vti.auth_service.auth.dto.RegisterResponseDTO;
+import com.vti.auth_service.auth.dto.response.AuthenticationResponseDTO;
+import com.vti.auth_service.auth.dto.request.LoginRequestDTO;
+import com.vti.auth_service.auth.dto.request.RegisterRequestDTO;
+import com.vti.auth_service.auth.dto.response.RegisterResponseDTO;
 import com.vti.auth_service.exception.CustomException;
 import com.vti.auth_service.user.services.AuthenticationService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,8 +14,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.IOException;
 
 @Slf4j
 @RestController
