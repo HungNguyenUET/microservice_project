@@ -1,5 +1,4 @@
 package com.vti.service;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,21 +10,33 @@ import com.vti.form.DepartmentFilterForm;
 import com.vti.repository.IDepartmentRepository;
 import com.vti.specification.department.DepartmentSpecification;
 
+import java.util.List;
+
 @Service
 public class DepartmentService implements IDepartmentService {
 
 	@Autowired
-	private IDepartmentRepository repository;
+	private IDepartmentRepository dpRepository;
 
 	public Page<Department> getAllDepartments(Pageable pageable, String search, DepartmentFilterForm filterForm) {
 
 		Specification<Department> where = DepartmentSpecification.buildWhere(search, filterForm);
-		return repository.findAll(where, pageable);
+		return dpRepository.findAll(where, pageable);
 	}
 
 	@Override
-	public Department getDepartmentByID(int id) {
-		return repository.findById(id).isPresent()? repository.findById(id).get() : null;
+	public Department getDepartmentById(int id) {
+		return dpRepository.findById(id);
+	}
+
+	@Override
+	public List<Department> getListDepartment() {
+		return dpRepository.findAll();
+	}
+
+	@Override
+	public List<Department> getDepartmentsByAccountId(int acId) {
+		return dpRepository.getDepartmentsByAccountId(acId);
 	}
 
 }

@@ -17,7 +17,7 @@ import java.util.HexFormat;
 @Component
 public class JwtUtil {
     private static final Logger log = LoggerFactory.getLogger(JwtUtil.class);
-    @Value("$jwt.secret")
+    @Value("$jwt.sercet")
     private String secretKey;
     private Key key;
 
