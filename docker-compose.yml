@@ -155,6 +155,41 @@ services:
     environment:
       EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://eureka-server:8761/eureka/
 
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.4.3
+    container_name: elasticsearch
+    restart: always
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms1g -Xms1g"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ./elk-stack/elastic-date:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+    networks:
+      - spring-microservice
+
+
+
+  kibana:
+    container_name: kibana
+    image: docker.elastic.co/kibana/kibana:8.4.3
+    restart: always
+    environment:
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    networks:
+      - spring-microservice
+
 networks:
   spring-microservice:
     driver: bridge
