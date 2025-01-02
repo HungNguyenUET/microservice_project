@@ -20,13 +20,12 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(req -> {
-                    req.requestMatchers(WHITE_LIST_URL)
-                            .permitAll()
-                            .requestMatchers("/api/v1/accounts").hasAnyRole(Role.ADMIN.name(), Role.MANAGER.name())
-                            .anyRequest()
-                            .authenticated();
-                })
+                .authorizeHttpRequests(req ->
+                        req.requestMatchers(WHITE_LIST_URL)
+                        .permitAll()
+                        .requestMatchers("/api/v1/accounts").hasAnyRole(Role.ADMIN.name(), Role.MANAGER.name())
+                        .anyRequest()
+                        .authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         return http.build();

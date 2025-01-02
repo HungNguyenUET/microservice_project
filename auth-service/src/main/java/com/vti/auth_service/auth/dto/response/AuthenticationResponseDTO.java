@@ -1,4 +1,4 @@
-package com.vti.auth_service.auth.dto;
+package com.vti.auth_service.auth.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

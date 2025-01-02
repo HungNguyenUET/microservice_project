@@ -1,7 +1,7 @@
 package com.vti.auth_service.exception;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.vti.auth_service.auth.dto.AuthenticationResponseDTO;
+import com.vti.auth_service.auth.dto.response.AuthenticationResponseDTO;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;

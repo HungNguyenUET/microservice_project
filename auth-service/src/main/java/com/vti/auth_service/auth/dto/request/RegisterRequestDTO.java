@@ -1,4 +1,4 @@
-package com.vti.auth_service.auth.dto;
+package com.vti.auth_service.auth.dto.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -12,7 +12,9 @@ import lombok.Getter;
 public class RegisterRequestDTO {
     @NotEmpty(message = "Username must not be empty")
     private String username;
+
     private String firstName;
+
     private String lastName;
 
     @NotNull(message = "Email must not be null")

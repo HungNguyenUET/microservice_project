@@ -14,8 +14,8 @@ import lombok.NoArgsConstructor;
 @Table(name = "`account`")
 @Getter
 public class Account {
-    @Column(name = "id")
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
@@ -31,4 +31,7 @@ public class Account {
     @ManyToOne
     @JoinColumn(name = "department_id", referencedColumnName = "id")
     private Department department;
+
+//    @Column(name = "role")
+//    private Role role;
 }
