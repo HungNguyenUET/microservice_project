@@ -29,7 +29,7 @@ public class AuthenticationFilter implements GatewayFilter {
             throw new CustomException(HttpStatus.UNAUTHORIZED, "Authorization header method is incorrect");
         }
 
-        String token = authHeader.substring(7);
+        String token = authHeader.substring(5);
         if (!jwtUtil.verifyToken(token)) {
             throw new CustomException(HttpStatus.UNAUTHORIZED, "Authorization header method is incorrect");
         }
