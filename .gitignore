@@ -35,6 +35,6 @@ build/
 ### temp file ###
 mysql/mysql-data
 
-elk-stack
-app
-logs
+/elk-stack
+/app
+/logs
