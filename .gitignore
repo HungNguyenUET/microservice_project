@@ -36,3 +36,5 @@ build/
 mysql/mysql-data
 
 elk-stack
+app
+logs
