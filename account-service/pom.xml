@@ -29,6 +29,7 @@
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2024.0.0</spring-cloud.version>
+		<start-class>hungnv.account_service.AccountServiceApplication</start-class>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -118,6 +119,8 @@
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-maven-plugin</artifactId>
 					<configuration>
+						<mainClass>hungnv.account_service.AccountServiceApplication</mainClass>
+						<layout>JAR</layout>
 						<excludes>
 							<exclude>
 								<groupId>org.projectlombok</groupId>
@@ -125,6 +128,13 @@
 							</exclude>
 						</excludes>
 					</configuration>
+					<executions>
+						<execution>
+							<goals>
+								<goal>repackage</goal>
+							</goals>
+						</execution>
+					</executions>
 				</plugin>
 				<plugin>
 					<groupId>org.jacoco</groupId>
