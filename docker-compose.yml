@@ -80,6 +80,7 @@ services:
       SPRING_DATASOURCE_USERNAME: hungnv
       SPRING_DATASOURCE_PASSWORD: 123abc
       SPRING_APPLICATION_NAME: auth-service
+      TOKEN_SECRET: ${TOKEN_SECRET}
 
 networks:
   spring-microservice:
