@@ -6,6 +6,7 @@ import hungnv.account_service.service.IAccountService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,9 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping(value = "/api/v1/accounts")
 public class AccountController {
+    @Value("${greeting.text}")
+    private String greetingText;
+
     private final IAccountService acService;
     private final ModelMapper modelMapper;
 
@@ -33,5 +37,10 @@ public class AccountController {
     @GetMapping("/hello")
     public String hello() {
         return "Hello";
+    }
+
+    @GetMapping("/greeting")
+    public String greet() {
+        return greetingText;
     }
 }
