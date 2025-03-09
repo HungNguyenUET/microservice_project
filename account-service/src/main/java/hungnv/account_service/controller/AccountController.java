@@ -19,15 +19,12 @@ public class AccountController {
     private final IAccountService acService;
     private final ModelMapper modelMapper;
 
+    @GetMapping
     public List<AccountDTO> getListAccounts() {
-
         List<Account> accounts = acService.getListAccounts();
-
-        List<AccountDTO> listAccountDTO = modelMapper.map(
+        return modelMapper.map(
                 accounts,
                 new TypeToken<List<AccountDTO>>() {}.getType());
-
-        return listAccountDTO;
     }
 
     @GetMapping("/hello")
