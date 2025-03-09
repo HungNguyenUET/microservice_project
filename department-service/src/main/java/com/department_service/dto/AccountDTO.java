@@ -1,4 +1,4 @@
-package hungnv.account_service.dto;
+package com.department_service.dto;
 
 import lombok.Data;
 
