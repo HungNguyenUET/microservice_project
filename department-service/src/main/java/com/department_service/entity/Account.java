@@ -1,4 +1,4 @@
-package hungnv.account_service.entity;
+package com.department_service.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -6,11 +6,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Getter
 @Entity
 @Builder
-@NoArgsConstructor
+@Getter
 @AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "account")
 public class Account {
     @Id
