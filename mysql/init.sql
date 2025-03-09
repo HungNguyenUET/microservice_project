@@ -108,8 +108,7 @@ CREATE TABLE users (
                     (	'khabanh'		,   	'2'			),
                     (	'huanhoahong'	,   	'2'			),
                     (	'tungnui'		,   	'8'			),
-                    (	'duongghuu'		,   	'9'			),
-                    (	'vtiaccademy'	,   	'10'		);
+                    (	'duongghuu'		,   	'9'			);
 
  -- Add data refreshtoken_seq
  INSERT INTO refreshtoken_seq VALUES (1);

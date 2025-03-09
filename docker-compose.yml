@@ -63,7 +63,7 @@ services:
       - spring-microservice
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/microservice?createDatabaseIfNotExist=true&characterEncoding=UTF-8&serverTimeZone=UTC
-      SPRING_DATASOURCE_USERNAME: npv0710
+      SPRING_DATASOURCE_USERNAME: hungnv
       SPRING_DATASOURCE_PASSWORD: 123abc
       SPRING_APPLICATION_NAME: department-service
       INSTANCE_NAME: department-service
@@ -94,13 +94,15 @@ services:
       dockerfile: Dockerfile
     restart: unless-stopped
     ports:
-      - "8083:8083"
+      - "8081:8081"
     depends_on:
       - mysql
       - eureka-server
+    depends_on:
+      - mysql
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/microservice?createDatabaseIfNotExist=true&characterEncoding=UTF-8&serverTimeZone=UTC
-      SPRING_DATASOURCE_USERNAME: npv0710
+      SPRING_DATASOURCE_USERNAME: hungnv
       SPRING_DATASOURCE_PASSWORD: 123abc
       SPRING_APPLICATION_NAME: account-service
     networks:
@@ -120,10 +122,11 @@ services:
       - spring-microservice
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/microservice?createDatabaseIfNotExist=true&characterEncoding=UTF-8&serverTimeZone=UTC
-      SPRING_DATASOURCE_USERNAME: npv0710
+      SPRING_DATASOURCE_USERNAME: hungnv
       SPRING_DATASOURCE_PASSWORD: 123abc
       SPRING_APPLICATION_NAME: auth-service
       EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://eureka-server:8761/eureka/
+      TOKEN_SECRET: ${TOKEN_SECRET}
 
   api-gateway:
     container_name: api-gateway
