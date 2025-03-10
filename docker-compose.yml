@@ -71,28 +71,28 @@ services:
       INSTANCE_NAME: department-service
       LOG_DIR: /var/log
 
-  department-service-2:
-    build:
-      context: ./department-service
-      dockerfile: Dockerfile
-    restart: unless-stopped
-    image: department-service
-    ports:
-      - "8081:8080"
-    depends_on:
-      - mysql
-      - eureka-server
-    networks:
-      - spring-microservice
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/microservice?createDatabaseIfNotExist=true&characterEncoding=UTF-8&serverTimeZone=UTC
-      SPRING_DATASOURCE_USERNAME: npv0710
-      SPRING_DATASOURCE_PASSWORD: 123abc
-      SPRING_APPLICATION_NAME: department-service
-      INSTANCE_NAME: department-service
-      LOG_DIR: /app/logs
-    volumes:
-      - ./logs:/app/logs
+#  department-service-2:
+#    build:
+#      context: ./department-service
+#      dockerfile: Dockerfile
+#    restart: unless-stopped
+#    image: department-service
+#    ports:
+#      - "8081:8080"
+#    depends_on:
+#      - mysql
+#      - eureka-server
+#    networks:
+#      - spring-microservice
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/microservice?createDatabaseIfNotExist=true&characterEncoding=UTF-8&serverTimeZone=UTC
+#      SPRING_DATASOURCE_USERNAME: npv0710
+#      SPRING_DATASOURCE_PASSWORD: 123abc
+#      SPRING_APPLICATION_NAME: department-service
+#      INSTANCE_NAME: department-service
+#      LOG_DIR: /app/logs
+#    volumes:
+#      - ./logs:/app/logs
 
   account-service:
     build:

@@ -50,8 +50,10 @@ public class User implements UserDetails {
     @Column(name = "provider", columnDefinition = "ENUM('local', 'facebook', 'google', 'github') DEFAULT 'local'")
     @Enumerated(EnumType.STRING)
     private AuthProvider provider;
+
     @Column(name = "provider_id", length = 100, nullable = true)
     private String providerId;
+
     @Column(name = "image_url", length = 200, nullable = true)
     private String imageUrl;
 
