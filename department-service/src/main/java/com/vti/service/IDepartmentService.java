@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import com.vti.entity.Department;
 import com.vti.form.DepartmentFilterForm;
 
+import com.vti.dto.Department;
 import java.util.List;
 
 public interface IDepartmentService {
@@ -17,4 +18,5 @@ public interface IDepartmentService {
 	List<Department> getListDepartment();
 
 	List<Department> getDepartmentsByAccountId(int acId);
+	List<Department> getAllDepartments();
 }
