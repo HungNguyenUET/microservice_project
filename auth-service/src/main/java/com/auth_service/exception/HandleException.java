@@ -1,7 +1,7 @@
-package com.auth_service.exception;
+package com.vti.auth_service.exception;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.auth_service.auth.dto.response.AuthenticationResponseDTO;
+import com.vti.auth_service.dto.response.AuthenticationResponse;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
@@ -39,12 +39,12 @@ public class HandleException extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(UsernameNotFoundException.class)
     public ResponseEntity<Object> handleBadCredentialsException(UsernameNotFoundException ex) throws JsonProcessingException {
-        AuthenticationResponseDTO authenticationResponseDTO = AuthenticationResponseDTO.builder()
+        AuthenticationResponse authenticationResponse = AuthenticationResponse.builder()
                 .message(ex.getMessage())
                 .status(HttpStatus.BAD_REQUEST.value())
                 .build();
 
-        return new ResponseEntity<>(authenticationResponseDTO, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(authenticationResponse, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
@@ -58,32 +58,32 @@ public class HandleException extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<Object> handleBadCredentialsException(BadCredentialsException ex) throws JsonProcessingException {
-        AuthenticationResponseDTO authenticationResponseDTO = AuthenticationResponseDTO.builder()
+        AuthenticationResponse authenticationResponse = AuthenticationResponse.builder()
                 .message("Username or password invalid")
                 .status(HttpStatus.UNAUTHORIZED.value())
                 .build();
 
-        return new ResponseEntity<>(authenticationResponseDTO, HttpStatus.UNAUTHORIZED);
+        return new ResponseEntity<>(authenticationResponse, HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(ExpiredJwtException.class)
     public ResponseEntity<Object> handleMalformedJwtException(ExpiredJwtException ex) throws JsonProcessingException {
-        AuthenticationResponseDTO authenticationResponseDTO = AuthenticationResponseDTO.builder()
+        AuthenticationResponse authenticationResponse = AuthenticationResponse.builder()
                 .message(ex.getMessage())
                 .status(HttpStatus.UNAUTHORIZED.value())
                 .build();
 
-        return new ResponseEntity<>(authenticationResponseDTO, HttpStatus.UNAUTHORIZED);
+        return new ResponseEntity<>(authenticationResponse, HttpStatus.UNAUTHORIZED);
     }
 
-    @ExceptionHandler(CustomException.class)
-    public ResponseEntity<Object> handleMalformedJwtException(CustomException ex) throws JsonProcessingException {
-        AuthenticationResponseDTO authenticationResponseDTO = AuthenticationResponseDTO.builder()
+    @ExceptionHandler(ValidationException.class)
+    public ResponseEntity<Object> handleMalformedJwtException(ValidationException ex) throws JsonProcessingException {
+        AuthenticationResponse authenticationResponse = AuthenticationResponse.builder()
                 .message(ex.getMessage())
                 .status(ex.getStatus().value())
                 .build();
 
-        return new ResponseEntity<>(authenticationResponseDTO, HttpStatus.UNAUTHORIZED);
+        return new ResponseEntity<>(authenticationResponse, HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(Exception.class)

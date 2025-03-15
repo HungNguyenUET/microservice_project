@@ -14,12 +14,14 @@ public class GatewayConfig {
     @Bean
     public RouteLocator routes(RouteLocatorBuilder builder) {
         return builder.routes()
+                .route("auth-service", r -> r.path("/api/v1/auth/**")
+                        .uri("lb://auth-service"))
                 .route("account-service", r -> r.path("/api/v1/accounts/**")
                         .filters(f -> f.filter(filter))
                         .uri("lb://account-service"))
-                .route("auth-service", r -> r.path("/api/v1/auth/**")
+                .route("auth-service", r -> r.path("/api/v1/department/**")
                         .filters(f -> f.filter(filter))
-                        .uri("lb://auth-service"))
+                        .uri("lb://department-service"))
                 .build();
 
     }

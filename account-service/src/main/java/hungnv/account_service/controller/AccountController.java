@@ -1,8 +1,7 @@
 package hungnv.account_service.controller;
 
-import hungnv.account_service.dto.AccountDTO;
-import hungnv.account_service.dto.DepartmentDTO;
 import hungnv.account_service.entity.Account;
+import hungnv.account_service.entity.AccountEntity;
 import hungnv.account_service.feignclient.DepartmentFeignClient;
 import hungnv.account_service.service.IAccountService;
 import hungnv.account_service.utils.JsonUtils;
@@ -10,12 +9,9 @@ import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.modelmapper.TypeToken;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -27,6 +23,9 @@ import java.util.List;
 @RequestMapping(value = "/api/v1/accounts")
 @RequiredArgsConstructor
 public class AccountController {
+    @Value("${greeting.text}")
+    private String greetingText;
+
     private final IAccountService acService;
     private final ModelMapper modelMapper;
     private RestTemplate restTemplate;
@@ -38,12 +37,11 @@ public class AccountController {
         return acService.findAccountById(id);
     }
 
-    @GetMapping
-    public List<AccountDTO> getListAccounts() {
-        List<Account> accounts = acService.getListAccounts();
+    public List<Account> getListAccounts() {
+        List<AccountEntity> accountEntities = acService.getListAccounts();
         return modelMapper.map(
-                accounts,
-                new TypeToken<List<AccountDTO>>() {}.getType());
+                accountEntities,
+                new TypeToken<List<Account>>() {}.getType());
     }
 
     @GetMapping("/hello")
@@ -53,5 +51,10 @@ public class AccountController {
 
     public String fallbackNotCallDepartmentService(int id, Throwable throwable) {
         return "Department Servers Down";
+    }
+
+    @GetMapping("/greeting")
+    public String greet() {
+        return greetingText;
     }
 }

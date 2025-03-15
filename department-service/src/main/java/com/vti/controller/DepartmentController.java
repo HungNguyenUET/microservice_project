@@ -46,7 +46,12 @@ public class DepartmentController {
 	public DepartmentDTO getDepartmentById(@PathVariable(name = "id") int id) {
 		log.info("DepartmentController|getDepartmentById|START|id|{}", id);
 		Department department = dpService.getDepartmentById(id);
+    private final IDepartmentService departmentService;
 
+    @GetMapping
+    public List<Department> getAllDepartment() {
+        return departmentService.getAllDepartments();
+    }
 		// convert entity to dto
 		DepartmentDTO dpDTO = modelMapper.map(department, DepartmentDTO.class);
 		log.info("DepartmentController|getDepartmentById|START|id|{}|dpDTP|{}", id, dpDTO);
