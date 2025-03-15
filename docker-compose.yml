@@ -55,6 +55,8 @@ services:
     depends_on:
       - mysql
       - eureka-server
+    depends_on:
+      - mysql
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/microservice?createDatabaseIfNotExist=true&characterEncoding=UTF-8&serverTimeZone=UTC
       SPRING_DATASOURCE_USERNAME: hungnv
