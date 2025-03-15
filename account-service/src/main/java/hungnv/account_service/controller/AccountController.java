@@ -1,7 +1,7 @@
 package hungnv.account_service.controller;
 
-import hungnv.account_service.dto.AccountDTO;
-import hungnv.account_service.entity.Account;
+import hungnv.account_service.entity.AccountEntity;
+import hungnv.account_service.model.Account;
 import hungnv.account_service.service.IAccountService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -18,14 +18,10 @@ public class AccountController {
     private final IAccountService acService;
     private final ModelMapper modelMapper;
 
-    public List<AccountDTO> getListAccounts() {
-
-        List<Account> accounts = acService.getListAccounts();
-
-        List<AccountDTO> listAccountDTO = modelMapper.map(
-                accounts,
-                new TypeToken<List<AccountDTO>>() {}.getType());
-
-        return listAccountDTO;
+    public List<Account> getListAccounts() {
+        List<AccountEntity> accountEntities = acService.getListAccounts();
+        return modelMapper.map(
+                accountEntities,
+                new TypeToken<List<Account>>() {}.getType());
     }
 }
