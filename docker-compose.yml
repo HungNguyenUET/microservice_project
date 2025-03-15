@@ -142,6 +142,7 @@ services:
       - spring-microservice
     environment:
       EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://eureka-server:8761/eureka/
+      TOKEN_SECRET: ${TOKEN_SECRET}
 
   config-service:
     container_name: config-service

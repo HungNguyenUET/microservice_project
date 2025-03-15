@@ -11,6 +11,9 @@ WORKDIR /app
 COPY target/department-service-0.0.1-SNAPSHOT.jar /app/department-service-0.0.1-SNAPSHOT.jar
 
 # EXPOSE PORT UNG DUNG
+# Chạy ứng dụng khi container khởi động
+ENTRYPOINT ["java", "-jar", "/app/department-service-0.0.1-SNAPSHOT.jar"]
+
 EXPOSE 8080
 
 # Chạy ứng dụng khi container khởi động
