@@ -1,13 +1,11 @@
 package hungnv.account_service.controller;
 
-import hungnv.account_service.dto.AccountDTO;
-import hungnv.account_service.entity.Account;
+import hungnv.account_service.entity.AccountEntity;
+import hungnv.account_service.model.Account;
 import hungnv.account_service.service.IAccountService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,12 +21,11 @@ public class AccountController {
     private final IAccountService acService;
     private final ModelMapper modelMapper;
 
-    @GetMapping
-    public List<AccountDTO> getListAccounts() {
-        List<Account> accounts = acService.getListAccounts();
+    public List<Account> getListAccounts() {
+        List<AccountEntity> accountEntities = acService.getListAccounts();
         return modelMapper.map(
-                accounts,
-                new TypeToken<List<AccountDTO>>() {}.getType());
+                accountEntities,
+                new TypeToken<List<Account>>() {}.getType());
     }
 
     @GetMapping("/hello")
