@@ -1,3 +1,4 @@
+<<<<<<<< HEAD:auth-service/src/main/java/com/vti/auth_service/services/AuthenticationService.java
 package com.vti.auth_service.services;
 
 import com.vti.auth_service.dto.response.AuthenticationResponse;
@@ -8,6 +9,20 @@ import com.vti.auth_service.exception.ValidationException;
 import com.vti.auth_service.model.Role;
 import com.vti.auth_service.model.User;
 import com.vti.auth_service.repo.UserRepository;
+========
+package com.auth_service.user.services;
+
+import com.auth_service.auth.dto.response.AuthenticationResponseDTO;
+import com.auth_service.auth.dto.request.LoginRequestDTO;
+import com.auth_service.auth.dto.request.RegisterRequestDTO;
+import com.auth_service.auth.dto.response.RegisterResponseDTO;
+import com.auth_service.exception.CustomException;
+import com.auth_service.model.Role;
+import com.auth_service.model.User;
+import com.auth_service.user.repo.UserRepository;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+>>>>>>>> 47f37699d2ea9828b383ce775658bc07a27d7ddb:auth-service/src/main/java/com/auth_service/user/services/AuthenticationService.java
 import jakarta.validation.ConstraintViolationException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

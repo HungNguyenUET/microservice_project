@@ -1,9 +1,9 @@
-package hungnv.account_service.model;
+package com.department_service.dto;
 
 import lombok.Data;
 
 @Data
-public class Account {
+public class AccountDTO {
     private int id;
     private String username;
     private String firstName;

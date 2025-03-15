@@ -1,4 +1,4 @@
-package com.vti;
+package com.department_service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

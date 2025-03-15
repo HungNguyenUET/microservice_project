@@ -16,6 +16,24 @@ services:
     networks:
       - spring-microservice
 
+  auth-service:
+    container_name: auth-service
+    build:
+      context: ./auth-service
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+    depends_on:
+      - mysql
+    networks:
+      - spring-microservice
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/microservice?createDatabaseIfNotExist=true&characterEncoding=UTF-8&serverTimeZone=UTC
+      SPRING_DATASOURCE_USERNAME: hungnv
+      SPRING_DATASOURCE_PASSWORD: 123abc
+      SPRING_APPLICATION_NAME: auth-service
+      TOKEN_SECRET: ${TOKEN_SECRET}
+
   department-service:
     container_name: department-service
     build:
@@ -40,6 +58,8 @@ services:
     restart: unless-stopped
     ports:
       - "8081:8081"
+    depends_on:
+      - mysql
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/microservice?createDatabaseIfNotExist=true&characterEncoding=UTF-8&serverTimeZone=UTC
       SPRING_DATASOURCE_USERNAME: hungnv
@@ -47,24 +67,6 @@ services:
       SPRING_APPLICATION_NAME: account-service
     networks:
       - spring-microservice
-
-  auth-service:
-    container_name: auth-service
-    build:
-      context: ./auth-service
-      dockerfile: Dockerfile
-    ports:
-      - "8082:8082"
-    depends_on:
-      - mysql
-    networks:
-      - spring-microservice
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/microservice?createDatabaseIfNotExist=true&characterEncoding=UTF-8&serverTimeZone=UTC
-      SPRING_DATASOURCE_USERNAME: hungnv
-      SPRING_DATASOURCE_PASSWORD: 123abc
-      SPRING_APPLICATION_NAME: auth-service
-      TOKEN_SECRET: ${TOKEN_SECRET}
 
 networks:
   spring-microservice:

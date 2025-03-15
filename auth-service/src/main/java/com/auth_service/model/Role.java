@@ -1,4 +1,4 @@
-package com.vti.auth_service.model;
+package com.auth_service.model;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-import static com.vti.auth_service.model.Permission.*;
+import static com.auth_service.model.Permission.*;
 
 @Getter
 @RequiredArgsConstructor

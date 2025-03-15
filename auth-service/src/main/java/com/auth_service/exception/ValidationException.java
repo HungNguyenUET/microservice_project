@@ -1,4 +1,4 @@
-package com.vti.auth_service.exception;
+package com.auth_service.exception;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;

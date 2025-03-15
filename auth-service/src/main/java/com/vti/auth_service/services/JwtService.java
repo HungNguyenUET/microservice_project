@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:auth-service/src/main/java/com/vti/auth_service/services/JwtService.java
 package com.vti.auth_service.services;
+========
+package com.auth_service.user.services;
+>>>>>>>> 47f37699d2ea9828b383ce775658bc07a27d7ddb:auth-service/src/main/java/com/auth_service/user/services/JwtService.java
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

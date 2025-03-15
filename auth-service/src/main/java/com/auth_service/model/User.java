@@ -1,4 +1,4 @@
-package com.vti.auth_service.model;
+package com.auth_service.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

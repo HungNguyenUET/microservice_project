@@ -1,6 +1,6 @@
-package com.vti.auth_service.config;
+package com.auth_service.config;
 
-import com.vti.auth_service.model.Role;
+import com.auth_service.model.Role;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

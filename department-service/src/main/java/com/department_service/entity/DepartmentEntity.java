@@ -1,4 +1,4 @@
-package com.vti.entity;
+package com.department_service.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
