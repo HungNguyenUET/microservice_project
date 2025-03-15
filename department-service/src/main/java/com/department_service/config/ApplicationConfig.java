@@ -1,6 +1,6 @@
-package hungnv.account_service.config;
+package com.vti.config;
 
-import hungnv.account_service.user.repo.UserRepository;
+import com.vti.user.repo.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
