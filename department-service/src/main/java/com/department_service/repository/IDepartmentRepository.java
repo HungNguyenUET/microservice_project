@@ -1,4 +1,4 @@
-package com.department_service.repository;
+package com.vti.repository;
 
 import com.vti.entity.Department;
 import org.springframework.data.domain.Page;
@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import com.vti.entity.DepartmentEntity;
 
 @Repository
 public interface IDepartmentRepository extends JpaRepository<Department, Integer> {
@@ -25,3 +26,5 @@ public interface IDepartmentRepository extends JpaRepository<Department, Integer
 
     public interface IDepartmentRepository extends JpaRepository<Department, Integer> {
     }
+public interface IDepartmentRepository extends JpaRepository<DepartmentEntity, Integer> {
+}
