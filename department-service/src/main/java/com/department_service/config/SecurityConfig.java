@@ -1,6 +1,6 @@
-package com.vti.config;
+package com.department_service.config;
 
-import com.vti.filter.JwtFilter;
+import com.department_service.filter.JwtFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

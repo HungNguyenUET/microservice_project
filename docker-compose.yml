@@ -50,6 +50,7 @@ services:
       SPRING_DATASOURCE_USERNAME: hungnv
       SPRING_DATASOURCE_PASSWORD: 123abc
       SPRING_APPLICATION_NAME: department-service
+      TOKEN_SECRET: ${TOKEN_SECRET}
 
   account-service:
     build:
@@ -65,6 +66,7 @@ services:
       SPRING_DATASOURCE_USERNAME: hungnv
       SPRING_DATASOURCE_PASSWORD: 123abc
       SPRING_APPLICATION_NAME: account-service
+      TOKEN_SECRET: ${TOKEN_SECRET}
     networks:
       - spring-microservice
 

@@ -8,13 +8,13 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.util.Date;
 import java.util.List;
 
-@Entity
-@Table(name = "department")
-@NoArgsConstructor
 @Getter
+@Entity
+@NoArgsConstructor
+@Table(name = "department")
 public class DepartmentEntity {
-    @Column(name = "id")
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
@@ -32,7 +32,7 @@ public class DepartmentEntity {
     @CreationTimestamp
     private Date createdAt;
 
-    @OneToMany(mappedBy = "department")
+    @OneToMany(mappedBy = "departmentEntity")
     private List<AccountEntity> accountEntityEntities;
 
     public enum DepartmentType {

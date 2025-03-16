@@ -1,6 +1,6 @@
-package com.vti.filter;
+package com.department_service.filter;
 
-import com.vti.service.JwtService;
+import com.department_service.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

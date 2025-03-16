@@ -1,11 +1,11 @@
-package com.vti.auth_service.controller;
+package com.auth_service.controller;
 
-import com.vti.auth_service.dto.response.AuthenticationResponse;
-import com.vti.auth_service.dto.request.LoginRequest;
-import com.vti.auth_service.dto.request.RegisterRequest;
-import com.vti.auth_service.dto.response.RegisterResponse;
-import com.vti.auth_service.exception.ValidationException;
-import com.vti.auth_service.services.AuthenticationService;
+import com.auth_service.dto.request.LoginRequest;
+import com.auth_service.dto.request.RegisterRequest;
+import com.auth_service.dto.response.AuthenticationResponse;
+import com.auth_service.dto.response.RegisterResponse;
+import com.auth_service.exception.ValidationException;
+import com.auth_service.services.AuthenticationService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -42,7 +42,6 @@ public class AuthenticationController {
 
     @PostMapping("/refresh-token")
     public AuthenticationResponse refreshToken(@RequestHeader("Authorization") String authHeader) throws ValidationException {
-        log.info("Request: {}", req);
         return authenticationService.refreshToken(authHeader);
     }
 }

@@ -1,4 +1,4 @@
-package com.vti.dto;
+package com.department_service.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;

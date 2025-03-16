@@ -32,7 +32,7 @@ public class DepartmentEntity {
     @CreationTimestamp
     private Date createdAt;
 
-    @OneToMany(mappedBy = "department")
+    @OneToMany(mappedBy = "departmentEntity")
     private List<AccountEntity> accountEntities;
 
     public enum DepartmentType {

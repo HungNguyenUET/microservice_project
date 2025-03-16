@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:auth-service/src/main/java/com/vti/auth_service/dto/request/RegisterRequest.java
-package com.vti.auth_service.dto.request;
-========
-package com.auth_service.auth.dto.request;
->>>>>>>> 47f37699d2ea9828b383ce775658bc07a27d7ddb:auth-service/src/main/java/com/auth_service/auth/dto/request/RegisterRequestDTO.java
+package com.auth_service.dto.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;

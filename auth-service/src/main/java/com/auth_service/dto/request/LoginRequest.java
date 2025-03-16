@@ -1,7 +1,6 @@
-package com.vti.auth_service.dto.request;
+package com.auth_service.dto.request;
 
 import jakarta.validation.constraints.NotEmpty;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter

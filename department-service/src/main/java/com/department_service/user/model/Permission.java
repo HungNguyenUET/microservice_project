@@ -1,4 +1,4 @@
-package com.vti.user.model;
+package com.department_service.user.model;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

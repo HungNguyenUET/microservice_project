@@ -1,7 +1,7 @@
-package com.vti.user.services;
+package com.department_service.user.services;
 
-import com.vti.user.model.User;
-import com.vti.user.repo.UserRepository;
+import com.department_service.user.model.User;
+import com.department_service.user.repo.UserRepository;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Optional;

@@ -1,6 +1,6 @@
-package com.vti.config;
+package com.department_service.config;
 
-import com.vti.user.repo.UserRepository;
+import com.department_service.user.repo.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;

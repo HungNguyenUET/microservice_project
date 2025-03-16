@@ -1,4 +1,4 @@
-package com.vti.service;
+package com.department_service.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

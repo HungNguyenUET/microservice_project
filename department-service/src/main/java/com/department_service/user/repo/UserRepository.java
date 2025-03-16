@@ -1,6 +1,6 @@
-package com.vti.user.repo;
+package com.department_service.user.repo;
 
-import com.vti.user.model.User;
+import com.department_service.user.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

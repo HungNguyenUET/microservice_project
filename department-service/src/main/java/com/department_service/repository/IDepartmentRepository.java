@@ -1,7 +1,7 @@
-package com.vti.repository;
+package com.department_service.repository;
 
+import com.department_service.entity.DepartmentEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.vti.entity.DepartmentEntity;
 
 public interface IDepartmentRepository extends JpaRepository<DepartmentEntity, Integer> {
 }

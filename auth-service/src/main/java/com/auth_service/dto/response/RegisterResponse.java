@@ -1,7 +1,9 @@
-package com.vti.auth_service.dto.response;
+package com.auth_service.dto.response;
 
 import lombok.Builder;
+import lombok.Getter;
 
+@Getter
 @Builder
 public class RegisterResponse {
     private int status;

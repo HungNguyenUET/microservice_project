@@ -1,4 +1,4 @@
-package com.vti.user.model;
+package com.department_service.user.model;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import java.util.Collections;
 import java.util.Set;
 
-import static com.vti.user.model.Permission.*;
+import static com.department_service.user.model.Permission.*;
 
 @Getter
 @RequiredArgsConstructor

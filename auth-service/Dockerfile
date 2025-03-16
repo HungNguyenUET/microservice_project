@@ -1,6 +1,9 @@
 # Sử dụng image JDK 17 chính thức
 FROM openjdk:17-jdk
 
+# Thông tin tác giả
+LABEL authors="hungnv"
+
 # Tạo thư mục ứng dụng trong container
 WORKDIR /app
 
@@ -8,6 +11,6 @@ WORKDIR /app
 COPY target/auth-service-0.0.1-SNAPSHOT.jar /app/auth-service-0.0.1-SNAPSHOT.jar
 
 # Chạy ứng dụng khi container khởi động
-ENTRYPOINT ["java", "-jar", "auth-service-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "/app/auth-service-0.0.1-SNAPSHOT.jar"]
 
 EXPOSE 8082
