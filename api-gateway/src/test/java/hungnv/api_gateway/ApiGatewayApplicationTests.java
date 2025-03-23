@@ -1,4 +1,4 @@
-package com.vti.api_gateway;
+package hungnv.api_gateway;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
