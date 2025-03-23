@@ -1,4 +1,4 @@
-package hungnv.account_service.config;
+package hungnv.department_service.config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

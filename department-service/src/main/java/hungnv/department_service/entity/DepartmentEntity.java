@@ -1,4 +1,4 @@
-package hungnv.account_service.entity;
+package hungnv.department_service.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -9,12 +9,12 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Getter
-@NoArgsConstructor
 @Table(name = "department")
+@NoArgsConstructor
+@Getter
 public class DepartmentEntity {
-    @Id
     @Column(name = "id")
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
@@ -33,13 +33,13 @@ public class DepartmentEntity {
     private Date createdAt;
 
     @OneToMany(mappedBy = "departmentEntity")
-    private List<AccountEntity> accountEntities;
+    private List<AccountEntity> accountEntityEntities;
 
     public enum DepartmentType {
         DEV, TEST, SCRUM_MASTER, PM;
 
         public static DepartmentType toEnum(String type) {
-            for (DepartmentType item: values()) {
+            for (DepartmentType item : values()) {
                 if (item.toString().equals(type)) return item;
             }
             return null;
