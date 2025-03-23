@@ -11,8 +11,8 @@
 	<groupId>com.department_service</groupId>
 	<artifactId>department-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>department-service</name>
-	<description>department-service</description>
+	<name>departmentDTO-service</name>
+	<description>departmentDTO-service</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -89,6 +89,11 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-commons</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>3.2.0</version>
 		</dependency>
 	</dependencies>
 	<dependencyManagement>
