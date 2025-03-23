@@ -1,4 +1,4 @@
-package com.vti.eureka_server;
+package hungnv.eureka_server;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

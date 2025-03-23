@@ -1,12 +1,12 @@
 package hungnv.department_service.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Builder;
+import lombok.Data;
 
 import java.util.Date;
 import java.util.List;
 
-@Builder
+@Data
 public class DepartmentDTO {
     private String name;
 
