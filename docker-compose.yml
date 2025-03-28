@@ -49,15 +49,17 @@ services:
       - spring-microservice
 
   department-service:
+  config-service:
+    container_name: config-service
     build:
-      context: ./department-service
+      context: ./config-service
       dockerfile: Dockerfile
     restart: unless-stopped
     image: department-service
+    restart: unless-stopped
     ports:
-      - "8080:8080"
+      - "8763:8763"
     depends_on:
-      - mysql
       - eureka-server
     networks:
       - spring-microservice
@@ -87,46 +89,7 @@ services:
       SPRING_DATASOURCE_PASSWORD: 123abc
       SPRING_APPLICATION_NAME: department-service
       INSTANCE_NAME: department-service
-
-  account-service:
-    build:
-      context: ./account-service
-      dockerfile: Dockerfile
-    restart: unless-stopped
-    ports:
-      - "8081:8081"
-    depends_on:
-      - mysql
-      - eureka-server
-    depends_on:
-      - mysql
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/microservice?createDatabaseIfNotExist=true&characterEncoding=UTF-8&serverTimeZone=UTC
-      SPRING_DATASOURCE_USERNAME: hungnv
-      SPRING_DATASOURCE_PASSWORD: 123abc
-      SPRING_APPLICATION_NAME: account-service
-    networks:
-      - spring-microservice
-
-  auth-service:
-    container_name: auth-service
-    build:
-      context: ./auth-service
-      dockerfile: Dockerfile
-    ports:
-      - "8082:8082"
-    depends_on:
-      - mysql
-      - eureka-server
-    networks:
-      - spring-microservice
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/microservice?createDatabaseIfNotExist=true&characterEncoding=UTF-8&serverTimeZone=UTC
-      SPRING_DATASOURCE_USERNAME: hungnv
-      SPRING_DATASOURCE_PASSWORD: 123abc
-      SPRING_APPLICATION_NAME: auth-service
       EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://eureka-server:8761/eureka/
-      TOKEN_SECRET: ${TOKEN_SECRET}
 
   api-gateway:
     container_name: api-gateway
@@ -138,26 +101,72 @@ services:
       - "8762:8762"
     depends_on:
       - eureka-server
+      - config-service
     networks:
       - spring-microservice
     environment:
       EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://eureka-server:8761/eureka/
       TOKEN_SECRET: ${TOKEN_SECRET}
 
-  config-service:
-    container_name: config-service
+  auth-service:
+    container_name: auth-service
     build:
-      context: ./config-service
+      context: ./auth-service
       dockerfile: Dockerfile
-    restart: unless-stopped
     ports:
-      - "8763:8763"
+      - "8082:8082"
     depends_on:
+      - mysql
       - eureka-server
+      - config-service
     networks:
       - spring-microservice
     environment:
-      EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://eureka-server:8761/eureka/
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/microservice?createDatabaseIfNotExist=true&characterEncoding=UTF-8&serverTimeZone=UTC
+      SPRING_DATASOURCE_USERNAME: hungnv
+      SPRING_DATASOURCE_PASSWORD: 123abc
+      SPRING_APPLICATION_NAME: auth-service
+      TOKEN_SECRET: ${TOKEN_SECRET}
+
+  department-service:
+    container_name: department-service
+    build:
+      context: ./department-service
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+      - eureka-server
+      - config-service
+    networks:
+      - spring-microservice
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/microservice?createDatabaseIfNotExist=true&characterEncoding=UTF-8&serverTimeZone=UTC
+      SPRING_DATASOURCE_USERNAME: hungnv
+      SPRING_DATASOURCE_PASSWORD: 123abc
+      SPRING_APPLICATION_NAME: department-service
+      TOKEN_SECRET: ${TOKEN_SECRET}
+
+  account-service:
+    build:
+      context: ./account-service
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mysql
+      - eureka-server
+      - config-service
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/microservice?createDatabaseIfNotExist=true&characterEncoding=UTF-8&serverTimeZone=UTC
+      SPRING_DATASOURCE_USERNAME: hungnv
+      SPRING_DATASOURCE_PASSWORD: 123abc
+      SPRING_APPLICATION_NAME: account-service
+      TOKEN_SECRET: ${TOKEN_SECRET}
+    networks:
+      - spring-microservice
 
 networks:
   spring-microservice:
