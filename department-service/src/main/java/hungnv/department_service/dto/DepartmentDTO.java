@@ -15,5 +15,4 @@ public class DepartmentDTO {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date createdDate;
 
-    private List<AccountDTO> accounts;
 }

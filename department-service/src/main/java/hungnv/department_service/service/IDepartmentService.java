@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface IDepartmentService {
     List<DepartmentEntity> getAllDepartments();
+    DepartmentEntity getDepartmentById(int id);
 }

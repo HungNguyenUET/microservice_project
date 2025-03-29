@@ -27,8 +27,4 @@ public class AccountEntity {
     @Column(name = "lastname")
     private String lastName;
 
-    @ManyToOne
-    @JoinColumn(name = "department_id", referencedColumnName = "id")
-    private DepartmentEntity departmentEntity;
-
 }

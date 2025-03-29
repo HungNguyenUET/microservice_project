@@ -32,9 +32,6 @@ public class DepartmentEntity {
     @CreationTimestamp
     private Date createdAt;
 
-    @OneToMany(mappedBy = "departmentEntity")
-    private List<AccountEntity> accountEntityEntities;
-
     public enum DepartmentType {
         DEV, TEST, SCRUM_MASTER, PM;
 
