@@ -1,4 +1,4 @@
-package com.vti.auth_service.util;
+package hungnv.auth_service.util;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;

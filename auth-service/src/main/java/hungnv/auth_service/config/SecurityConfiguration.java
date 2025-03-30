@@ -1,10 +1,10 @@
 package hungnv.auth_service.config;
 
 import hungnv.auth_service.model.Role;
-import com.vti.auth_service.handler.OAuth2AuthenticationFailureHandler;
-import com.vti.auth_service.handler.OAuth2AuthenticationSuccessHandler;
-import com.vti.auth_service.oauth2.repository.HttpCookieOAuthorizationRequestRepository;
-import com.vti.auth_service.oauth2.service.CustomOAuth2UserService;
+import hungnv.auth_service.handler.OAuth2AuthenticationFailureHandler;
+import hungnv.auth_service.handler.OAuth2AuthenticationSuccessHandler;
+import hungnv.auth_service.oauth2.repository.HttpCookieOAuthorizationRequestRepository;
+import hungnv.auth_service.oauth2.service.CustomOAuth2UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.auth_service.model.Role;
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-package com.vti.auth_service.oauth2.user;
+package hungnv.auth_service.oauth2.user;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;

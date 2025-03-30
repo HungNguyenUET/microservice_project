@@ -1,4 +1,4 @@
-package com.vti.auth_service.oauth2.entity;
+package hungnv.auth_service.oauth2.entity;
 
 public enum AuthProvider {
     local,

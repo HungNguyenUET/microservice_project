@@ -1,6 +1,6 @@
 package hungnv.auth_service.model;
 
-import com.vti.auth_service.oauth2.entity.AuthProvider;
+import hungnv.auth_service.oauth2.entity.AuthProvider;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

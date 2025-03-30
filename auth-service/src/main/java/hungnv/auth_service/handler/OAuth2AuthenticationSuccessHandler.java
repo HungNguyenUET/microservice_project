@@ -1,9 +1,9 @@
-package com.vti.auth_service.handler;
+package hungnv.auth_service.handler;
 
-import com.vti.auth_service.oauth2.UserPrincipal;
-import com.vti.auth_service.oauth2.repository.HttpCookieOAuthorizationRequestRepository;
+import hungnv.auth_service.oauth2.UserPrincipal;
+import hungnv.auth_service.oauth2.repository.HttpCookieOAuthorizationRequestRepository;
 import com.vti.auth_service.user.services.JwtService;
-import com.vti.auth_service.util.CookieUtils;
+import hungnv.auth_service.util.CookieUtils;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;

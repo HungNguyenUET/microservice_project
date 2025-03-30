@@ -1,4 +1,4 @@
-package com.vti.auth_service.oauth2;
+package hungnv.auth_service.oauth2;
 
 import com.vti.auth_service.model.User;
 import lombok.Setter;

@@ -1,4 +1,4 @@
-package com.vti.auth_service.oauth2.user;
+package hungnv.auth_service.oauth2.user;
 
 import java.util.Map;
 
