@@ -1,6 +1,6 @@
 package hungnv.auth_service.handler;
 
-import com.vti.auth_service.exception.CustomException;
+import hungnv.auth_service.exception.ValidationException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -18,7 +18,7 @@ public class OAuth2AuthenticationFailureHandler extends SimpleUrlAuthenticationF
     @SneakyThrows
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
-        throw new CustomException(HttpStatus.UNAUTHORIZED, "Unauthorized!");
+        throw new ValidationException(HttpStatus.UNAUTHORIZED, "Unauthorized!");
     }
 
 }
