@@ -1,4 +1,4 @@
-package hungnv.auth_service.util;
+package hungnv.auth_service.oauth2.util;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;

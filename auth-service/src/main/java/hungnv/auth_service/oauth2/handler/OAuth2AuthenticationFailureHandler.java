@@ -1,4 +1,4 @@
-package hungnv.auth_service.handler;
+package hungnv.auth_service.oauth2.handler;
 
 import hungnv.auth_service.exception.ValidationException;
 import jakarta.servlet.ServletException;

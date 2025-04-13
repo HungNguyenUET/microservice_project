@@ -1,11 +1,11 @@
 package hungnv.auth_service.oauth2.service;
 
-import com.vti.auth_service.model.User;
+import hungnv.auth_service.model.User;
 import hungnv.auth_service.oauth2.UserPrincipal;
-import hungnv.auth_service.oauth2.entity.AuthProvider;
+import hungnv.auth_service.oauth2.provider.AuthProvider;
 import hungnv.auth_service.oauth2.user.OAuth2UserInfo;
 import hungnv.auth_service.oauth2.user.OAuth2UserInfoFactory;
-import com.vti.auth_service.user.repo.UserRepository;
+import hungnv.auth_service.user.repo.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;

@@ -1,4 +1,4 @@
-package hungnv.auth_service.oauth2.entity;
+package hungnv.auth_service.oauth2.provider;
 
 public enum AuthProvider {
     local,

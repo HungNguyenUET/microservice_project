@@ -1,14 +1,15 @@
-package hungnv.auth_service.handler;
+package hungnv.auth_service.oauth2.handler;
 
 import hungnv.auth_service.oauth2.UserPrincipal;
 import hungnv.auth_service.oauth2.repository.HttpCookieOAuthorizationRequestRepository;
-import com.vti.auth_service.user.services.JwtService;
-import hungnv.auth_service.util.CookieUtils;
+import hungnv.auth_service.services.JwtService;
+import hungnv.auth_service.oauth2.util.CookieUtils;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
@@ -22,6 +23,9 @@ import java.util.Optional;
 public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
     private final JwtService jwtService;
     private final HttpCookieOAuthorizationRequestRepository httpCookieOAuthorizationRequestRepository;
+
+    @Value("${app.oauth2.authorizedRedirectUris}")
+    private String redirectUri;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,

@@ -113,7 +113,7 @@ public class AuthenticationService {
             throw new ValidationException(HttpStatus.INTERNAL_SERVER_ERROR, "Username is empty");
         }
 
-    //Get User's data from database
+        //Get User's data from database
         Optional<User> userFoundByUsername = userRepository.findByUsername(userName);
         if (userFoundByUsername.isEmpty()) {
             throw new UsernameNotFoundException(userName);

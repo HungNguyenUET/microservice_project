@@ -1,9 +1,10 @@
 package hungnv.auth_service.oauth2.repository;
 
-import hungnv.auth_service.util.CookieUtils;
+import hungnv.auth_service.oauth2.util.CookieUtils;
+import io.micrometer.common.util.StringUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.oauth2.client.web.AuthorizationRequestRepository;
 import org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest;
 import org.springframework.stereotype.Component;
