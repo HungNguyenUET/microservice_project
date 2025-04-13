@@ -19,10 +19,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SecurityConfiguration {
     private static final String[] WHITE_LIST_URL = {
+            "/oauth2/redirect",
             "/oauth2/authorize",
             "/oauth2/authorize/github",
             "/oauth2/callback/github",
-            "/oauth2/redirect",
             "/api/v1/auth/login",
             "/api/v1/auth/register",
             "/api/v1/auth/refresh-token"
