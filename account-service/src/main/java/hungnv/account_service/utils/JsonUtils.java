@@ -10,8 +10,7 @@ public class JsonUtils {
 
     public static <T> String toJson(T t) {
         try {
-            String jsonString = objectMapper.writeValueAsString(t);
-            return jsonString;
+            return objectMapper.writeValueAsString(t);
         } catch (JsonProcessingException e) {
             log.info("JsonUtils|toJson|ERROR|", e);
             return null;

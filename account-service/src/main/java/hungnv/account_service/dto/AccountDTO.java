@@ -1,8 +1,10 @@
 package hungnv.account_service.dto;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 public class AccountDTO {
     private int id;
     private String username;
